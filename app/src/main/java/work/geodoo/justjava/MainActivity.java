@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        displayMessage("Total: " + NumberFormat.getCurrencyInstance().format(quantity));
+        displayMessage("Total: " + NumberFormat.getCurrencyInstance().format(quantity * 5));
     }
 
     private void display(int number) {

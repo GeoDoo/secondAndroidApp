@@ -21,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        display(quantity);
-        displayPrice(quantity * 5);
+        displayMessage("Total: " + NumberFormat.getCurrencyInstance().format(quantity));
     }
 
     private void display(int number) {
@@ -33,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 
     public void increment(View view) {

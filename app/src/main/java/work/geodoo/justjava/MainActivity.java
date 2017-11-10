@@ -21,12 +21,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        displayMessage("Total: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nThank you!");
+        String message = setMessage();
+        displayMessage(message);
     }
 
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+    }
+
+    private String setMessage() {
+        return "Total: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nThank you!";
     }
 
     private void displayMessage(String message) {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.icu.text.NumberFormat;
 
@@ -32,16 +33,18 @@ public class MainActivity extends AppCompatActivity {
         whippedCream = !whippedCream;
     }
 
+    private String getUserName() {
+        EditText name = (EditText) findViewById(R.id.name);
+        return name.getText().toString();
+    }
+
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
 
     private String setMessage() {
-        if (whippedCream) {
-            return "Total: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nAdd whipped cream too? Yes" + "\nThank you!";
-        }
-        return "Total: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nAdd whipped cream too? No" + "\nThank you!";
+        return "Welcome, " + getUserName() + "\nTotal: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nAdd whipped cream too? " + whippedCream + "\nThank you!";
     }
 
     private void displayMessage(String message) {

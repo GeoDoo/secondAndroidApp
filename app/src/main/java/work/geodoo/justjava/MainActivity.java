@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
+        if (quantity == 0) return;
         String message = setMessage();
         displayMessage(message);
     }

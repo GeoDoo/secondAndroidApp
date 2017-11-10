@@ -1,5 +1,7 @@
 package work.geodoo.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         if (quantity == 0) return;
         String message = setMessage();
-        displayMessage(message);
+        Intent gmail = new Intent(Intent.ACTION_SENDTO);
+        gmail.setData(Uri.parse("mailto:"));
+        gmail.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + getUserName());
+        gmail.putExtra(Intent.EXTRA_TEXT, message);
+        if (gmail.resolveActivity(getPackageManager()) != null) {
+            startActivity(gmail);
+        }
     }
 
     public void checkWhippedCream(View view) {
@@ -45,11 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     private String setMessage() {
         return "Welcome, " + getUserName() + "\nTotal: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nAdd whipped cream too? " + whippedCream + "\nThank you!";
-    }
-
-    private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
     }
 
     public void increment(View view) {
